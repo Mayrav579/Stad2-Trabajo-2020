@@ -1,1 +1,19 @@
-# Stad2-Trabajo-2020
+# Trabajo grupal - Primera Entrega
+Mayra Catalina Vargas Cachi - 20163469
+El presente repositorio contiene tres archivos necesarios para realizar la limpieza de dos variables que se presentaran el la entrega del trabajo final. Los primeros dos archivos son documentos de excel que contienen las dos tablas con las datas de Current health expenditure (% of GDP) (Gasto actual en salud) y Government expenditure on education (%) (Gasto público en educación). El tercer archivo es el RMD que contiene la extracción y la limpieza de ambas datas. A continuación se procederá a detallar la METADATA de las variables mencionadas.
+
+# METADATA
+Las variables que se presentaran a continuación conforman la dimensión económica relacionada con el gasto público analizada en el presente trabajo:
+
+# Current health expenditure (% of GDP)
+Current health expenditure (% of GDP) o CHE, según el Banco Mundial,es un estimado de los gastos en salud de cada año para lo cual considera los distintos bienes y servicios que son consumidos. Es importante recalcar que esta variable no evalua otros gastos relacionados a la salud como son la infraestructura, maquinaria o las existencias en suministros de vacunas. La metodología estadistica considerada para la formulación de esta variable es manejada por la Organización Mundial de la Salud (OMS) a partir del System of Health Accounts 2011 (SHA 2011) que es un manual de referencia estadística el cual considerada los flujos financieros en salud. Es así que mediante el SHA 2011 se generan los datos a partir de los distintos gastos que tuvo un país en un tiempo específico (Para el trabajo se selecciono el año 2016). Es importante mencionar que  Current health expenditure (% of GDP) es una variable extraida del DataBank del Banco Mundial.
+Se ha seleccionado esta variable para el trabajo debido a que un mejor manejo en el gasto de salud por parte de los gobiernos permite que mayor cantidad de su población acceda a servicios de salud básicos. Sin embargo, cuando la corrupción influye en el manejo presupuestal, los sistemas de salud se debilitan y perjudican a la población en general.
+
+# Government expenditure on education (% of government expenditure)
+Government expenditure on education (%) o Gasto público en educación (% del gasto del gobierno), según el Banco Mundial, corresponde al gasto público total en educación, tomando en cuenta el gasto en instituciones tanto públicas como privadas, administración educativa y subsidios a entidades privadas. En este caso esta expresado en forma del porcentaje del gasto total del Gobierno. La metodología estadistica considerada para el cálculo de esta variable es una división entre el gasto público total en educación y el gasto publico total de todos los sectores multiplicado por 100. La entidad encargada de recolectar la data relacionada a educación es la UNESCO, la cual se guía a partir del  International Standard Classification of Education (ISCED 2011) que permite realizar comparaciones entre los distintos sistemas educativos en los países del mundo. Para la variable Government expenditure on education se consideró también el año 2016 y fue extraida del DataBank del Banco Mundial.
+Se ha seleccionado la variable de Government expenditure on education (% of government expenditure) para el desarrollo del trabajo debido a que si existe un buen manejo del presupuesto planteado para el sector educación por parte de los gobernantes, la población podra acceder a un sistema educativo fortalecido que a la larga beneficia al desarrollo de cada individuo.
+
+# Justificación a la elección del año
+En el presente trabajo se ha considerado como año a estudiar el 2016, debido a que a finales de ese año se dio inicio a la investigación relacionada con el caso Caso Odebrecht que involucro a distintos países latinoamericanos. Es por este motivo que analizar la percepción de la corrupción frente a distintas variables políticas y sociales ppermitirá explicar la existencia o no de una relación entre las variables estudiadas en los distintos países del mundo.
+
+

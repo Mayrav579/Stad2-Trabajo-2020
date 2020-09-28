@@ -1,0 +1,137 @@
+# Limpieza de la base de datos de Gasto actual en Salud (% del PBI) - Mayra Vargas
+
+# Importar data
+```{r}
+library(rio)
+linkBM_CHE = "https://github.com/Mayrav579/Stad2-Trabajo-2020/raw/master/Current%20health%20expenditure%20(%25%20of%20GDP)%20-%20Excel.xls"
+CHE =import(linkBM_CHE)
+```
+# Limpieza
+```{r}
+#Quitamos columnas innecesarias
+CHE[,c(2:60)]=NULL
+CHE[,c(3:5)]=NULL
+#cambiamos nombres
+names(CHE)=c("Pais","CHE")
+#Quitamos filas innecesarias
+CHE= CHE[-c(1:3),]
+```
+```{r}
+#Creamos nueva fila para poder los numeros de la nueva columna
+CHE$num=c(1:264)
+CHE$num=as.numeric(CHE$num)
+row.names(CHE)=CHE$num
+CHE$num=NULL
+```
+
+# Estandarizamos los países cambiando su nombre
+```{r}
+CHE[CHE$Pais =="Bahamas, The",'Pais']= "Bahamas"
+CHE[CHE$Pais == "Congo, Dem. Rep.",'Pais']= "Democratic Republic of the Congo"
+CHE[CHE$Pais == "Congo, Rep.",'Pais']= "Republic of Congo"
+CHE[CHE$Pais == "Egypt, Arab Rep.",'Pais']= "Egypt"
+CHE[CHE$Pais == "Micronesia, Fed. Sts.",'Pais']= "Federated States of Micronesia"
+CHE[CHE$Pais == "Gambia, The",'Pais']= "Gambia"
+CHE[CHE$Pais == "Hong Kong SAR, China ",'Pais']= "Hong Kong"
+CHE[CHE$Pais == "Iran, Islamic Rep.",'Pais']= "Islamic Republic of Iran"
+CHE[CHE$Pais == "Kirgyz Republic",'Pais']= "Kyrgyzstan"
+CHE[CHE$Pais == "Korea, Rep.",'Pais']=  "Korea,South"
+CHE[CHE$Pais == "Lao PDR",'Pais']=  "Laos"
+CHE[CHE$Pais == "Korea, Dem. People’s Rep.",'Pais']=  "Korea, North"
+CHE[CHE$Pais == "Venezuela,RB",'Pais']=  "Venezuela"
+CHE[CHE$Pais == "Yemen, Rep.",'Pais']=  "Republic of Yemen"
+
+#Convertimos a numérico
+CHE$CHE=as.numeric(CHE$CHE)
+str(CHE)
+```
+
+# Importamos la base de los países:
+
+```{r}
+linkIPC = "https://github.com/isaurayamile/TRABAJO-ESTADISTICA/raw/master/CPI2019.xlsx"
+ICP = import(linkIPC)
+ICP [,c(2:15)] = NULL 
+ICP [,c(3:16)] = NULL 
+ICP= ICP [-(1:2),]
+ICP$num=c(1:180)
+ICP$num=as.numeric(ICP$num)
+row.names(ICP)=ICP$num
+ICP$num=NULL
+names(ICP) = c("Pais","CPI2016")
+ICP[duplicated(ICP$Pais),]
+ICP[!complete.cases(ICP),]
+ICP= ICP[-27,]
+ICP= ICP[-64,]
+ICP= ICP[-111,]
+ICP= ICP[-171,]
+ICP$num=c(1:176)
+ICP$num=as.numeric(ICP$num)
+row.names(ICP)=ICP$num
+ICP$num=NULL
+
+#Convertimos a numérico
+ICP$CPI2016=as.numeric(ICP$CPI2016)
+str(ICP)
+```
+
+# Hacemos Merge entre ambas bases para obtener los países.
+```{r}
+#Merge
+GastoSalud=merge(CHE,ICP,by.x="Pais",by.y="Pais") 
+
+#Eliminamos los valores del IPC
+GastoSalud$CPI2016=NULL
+
+#Visualizamos los NA's
+table(GastoSalud$CHE,useNA = "always")
+```
+
+
+# Limpieza de la base de datos de Gasto público en Educación (% del gasto del gobierno) - Mayra Vargas
+
+# Importar data
+```{r}
+library(rio)
+linkBM_Edu = "https://github.com/Mayrav579/Stad2-Trabajo-2020/raw/master/Government%20expenditure%20on%20education%20(%25)%20-%20Excel.xls"
+Educacion= import(linkBM_Edu)
+```
+# Limpieza
+```{r}
+#Quitamos columnas
+Educacion[,c(2:60)]=NULL
+Educacion[,c(3:5)]=NULL
+
+#Cambiamos nombres
+names(Educacion)=c("Pais","GastoEduca")
+
+#Quitamos filas
+Educacion=Educacion[-c(1:3),]
+```
+
+# Añadimos una nueva columna 
+```{r}
+#Creamos nueva columna
+Educacion$num=c(1:264)
+Educacion$num=as.numeric(Educacion$num)
+row.names(Educacion)=Educacion$num
+Educacion$num=NULL
+
+# Convertimos a númerico
+Educacion$GastoEduca=as.numeric(Educacion$GastoEduca)
+str(Educacion)
+```
+
+# Hacemos el Merge solo para obtener solo los países 
+```{r}
+#Merge
+GastoEducacion=merge(ICP,Educacion,by.x = "Pais", by.y = "Pais")
+
+#Eliminamos la columna de ICP
+GastoEducacion$CPI2016=NULL
+
+#Visualizamos NA's
+table(GastoEducacion$GastoEduca,useNA = "always")
+```
+
+
